@@ -109,7 +109,7 @@ namespace CoronaVirusApi
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ADHasarDanismanlik API V1.0");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Coronavirus API V1.0");
             });
 
             // Ensure db is created!
