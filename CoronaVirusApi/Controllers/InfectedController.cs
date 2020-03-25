@@ -20,7 +20,6 @@ namespace CoronaVirusApi.Controllers
             _infectedService = infectedService;
         }
 
-        [NeedRole(Role = "admin")]
         [HttpGet]
         public async Task<IActionResult> Get(Guid id)
         {
@@ -32,7 +31,6 @@ namespace CoronaVirusApi.Controllers
                 return NotFound();
         }
 
-        [NeedRole(Role = "admin")]
         [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
