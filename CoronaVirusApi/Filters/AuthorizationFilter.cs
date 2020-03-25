@@ -16,7 +16,7 @@ namespace CoronaVirusApi.Filters
         {
             if (context.ActionDescriptor
                  .FilterDescriptors
-                 .Any(x => x.Filter is SkipAuthAttribute) || context.HttpContext.Request.Path.Value.Contains("/hangfire"))
+                 .Any(x => x.Filter is SkipAuthAttribute))
             {
                 await next();
                 return;

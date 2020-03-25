@@ -102,7 +102,7 @@ namespace CoronaVirusApi
             {
                 endpoints.MapControllers();
             });
-               app.UseSwagger();
+            app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
@@ -116,7 +116,11 @@ namespace CoronaVirusApi
             var context = serviceScope.ServiceProvider.GetRequiredService<CoronaVirusContext>();
             context.Database.EnsureCreated();
 
-            app.UseHangfireDashboard();
+            app.UseHangfireDashboard(options: new DashboardOptions
+            {
+                Authorization = new[] { new HangfireAuthorizationHack() }
+            });
+
             app.UseHangfireServer();
         }
     }
