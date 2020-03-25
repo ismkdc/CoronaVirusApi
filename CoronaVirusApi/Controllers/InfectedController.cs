@@ -69,7 +69,7 @@ namespace CoronaVirusApi.Controllers
         }
 
         [NeedRole(Role = "admin")]
-        [HttpGet("")]
+        [HttpDelete("")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _infectedService.Delete(id);
