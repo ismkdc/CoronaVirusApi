@@ -21,7 +21,7 @@ namespace CoronaVirusApi.Controllers
         }
 
         [NeedRole(Role = "admin")]
-        [HttpGet("")]
+        [HttpGet]
         public async Task<IActionResult> Get(Guid id)
         {
             var result = await _infectedService.Get(id);
@@ -33,7 +33,7 @@ namespace CoronaVirusApi.Controllers
         }
 
         [NeedRole(Role = "admin")]
-        [HttpGet("")]
+        [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _infectedService.GetAll();
@@ -45,7 +45,7 @@ namespace CoronaVirusApi.Controllers
         }
 
         [NeedRole(Role = "admin")]
-        [HttpPost("")]
+        [HttpPost]
         public async Task<IActionResult> Add(InfectedDTO model)
         {
             var result = await _infectedService.Add(model);
@@ -57,7 +57,7 @@ namespace CoronaVirusApi.Controllers
         }
 
         [NeedRole(Role = "admin")]
-        [HttpPut("")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromQuery]Guid id, [FromBody]InfectedDTO model)
         {
             var result = await _infectedService.Update(id, model);
@@ -69,7 +69,7 @@ namespace CoronaVirusApi.Controllers
         }
 
         [NeedRole(Role = "admin")]
-        [HttpGet("")]
+        [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _infectedService.Delete(id);

@@ -58,6 +58,7 @@ namespace CoronaVirusApi.Controllers
             }
         }
 
+        [HttpGet("me")]
         public CurrentUserDTO Me() => _userService.CurrentUser;
     }
 }

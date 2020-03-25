@@ -102,6 +102,7 @@ namespace CoronaVirusApi
             {
                 endpoints.MapControllers();
             });
+
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
@@ -112,9 +113,9 @@ namespace CoronaVirusApi
             });
 
             // Ensure db is created!
-            using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
-            var context = serviceScope.ServiceProvider.GetRequiredService<CoronaVirusContext>();
-            context.Database.EnsureCreated();
+            //using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+            //var context = serviceScope.ServiceProvider.GetRequiredService<CoronaVirusContext>();
+            //context.Database.EnsureCreated();
 
             app.UseHangfireDashboard(options: new DashboardOptions
             {
