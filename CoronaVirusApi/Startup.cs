@@ -102,6 +102,19 @@ namespace CoronaVirusApi
             {
                 endpoints.MapControllers();
             });
+               app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ADHasarDanismanlik API V1.0");
+            });
+
+            // Ensure db is created!
+            using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+            var context = serviceScope.ServiceProvider.GetRequiredService<CoronaVirusContext>();
+            context.Database.EnsureCreated();
 
             app.UseHangfireDashboard();
             app.UseHangfireServer();
