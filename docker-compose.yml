@@ -1,0 +1,32 @@
+version: '3'
+services:  
+  db:
+    container_name: mariadb
+    image: yobasystems/alpine-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: PZLqwVFf8YkwqRhq?PZLqwVFf8YkwqRhq
+      MYSQL_DATABASE: coronavirus_db
+      MYSQL_USER: coronavirus_user
+      MYSQL_PASSWORD: PZLqwVFf8YkwqRhq
+    expose:
+      - "3306"
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+    restart: always
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: phpmyadmin
+      environment:
+       - PMA_ARBITRARY=1
+      restart: always
+      ports:
+       - 8080:80
+      links:
+      - "db"
+  web:
+    build: .
+    ports:
+      - 127.0.0.1:5000:80
+    links:
+      - db
+    restart: always
