@@ -46,24 +46,38 @@ namespace CoronaVirusApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(InfectedDTO model)
         {
-            var result = await _infectedService.Add(model);
+            if (ModelState.IsValid)
+            {
+                var result = await _infectedService.Add(model);
 
-            if (result)
-                return CreatedAtAction(nameof(Add), null);
+                if (result)
+                    return CreatedAtAction(nameof(Add), null);
+                else
+                    return BadRequest();
+            }
             else
-                return BadRequest();
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         [NeedRole(Role = "admin")]
         [HttpPut]
         public async Task<IActionResult> Update([FromQuery]Guid id, [FromBody]InfectedDTO model)
         {
-            var result = await _infectedService.Update(id, model);
+            if (ModelState.IsValid)
+            {
+                var result = await _infectedService.Update(id, model);
 
-            if (result)
-                return Ok();
+                if (result)
+                    return Ok();
+                else
+                    return NotFound();
+            }
             else
-                return NotFound();
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         [NeedRole(Role = "admin")]
