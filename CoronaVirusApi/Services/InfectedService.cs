@@ -33,10 +33,19 @@ namespace CoronaVirusApi.Services
 
         public async Task<InfectedDTO> Get(Guid id) =>
             _mapper.Map<InfectedDTO>(
-                await _context.Infecteds.SingleOrDefaultAsync(x => x.Id == id && !x.IsDeleted));
+                await _context
+                    .Infecteds
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(x => x.Id == id && !x.IsDeleted)
+                );
         public async Task<IEnumerable<InfectedDTO>> GetAll() =>
             _mapper.Map<IEnumerable<InfectedDTO>>(
-                await _context.Infecteds.Where(x => !x.IsDeleted).ToListAsync());
+                await _context
+                    .Infecteds
+                    .AsNoTracking()
+                    .Where(x => !x.IsDeleted)
+                    .ToListAsync()
+                );
 
         public async Task<bool> Add(InfectedDTO model)
         {
