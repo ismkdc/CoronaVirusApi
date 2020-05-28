@@ -1,8 +1,4 @@
-﻿using CoronaVirusApi.Models;
-using CoronaVirusApi.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using CoronaVirusApi.Services;
 using System.Threading.Tasks;
 
 namespace CoronaVirusApi.Jobs
